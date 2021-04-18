@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-FROM golang
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -52,7 +51,7 @@ RUN set -ex; \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg-reconfigure locales
-
+FROM golang 
 RUN go get github.com/tomnomnom/waybackurls
 # RUN git clone https://github.com/nahamsec/bbht.git
 # RUN chmod +x bbht/install.sh
@@ -86,7 +85,7 @@ RUN go get github.com/tomnomnom/waybackurls
 
 # RUN git clone https://github.com/devanshbatham/ParamSpider
 # RUN pip3 install -r ParamSpider/requirements.txt
-
+FROM ubuntu:18.04
 COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
