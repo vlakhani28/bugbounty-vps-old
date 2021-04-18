@@ -110,7 +110,7 @@ RUN apt-get update \
 
 
 RUN wget -q -O - https://git.io/vQhTU | bash
-RUN source /root/.bashrc
+RUN /root/.bashrc
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
