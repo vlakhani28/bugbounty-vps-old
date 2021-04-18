@@ -109,8 +109,6 @@ RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --yes pulseaudio-utils
 
 
-RUN wget -q -O - https://git.io/vQhTU | bash
-RUN /root/.bashrc
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
@@ -123,6 +121,8 @@ RUN export UNAME=$UNAME UID=1000 GID=1000 && \
     chown ${UID}:${GID} -R /home/${UNAME} && \
     gpasswd -a ${UNAME} audio
 
+RUN wget -q -O - https://git.io/vQhTU | bash
+RUN sudo /root/.bashrc
 RUN echo xfce4-session >~/.xsession
 RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" 
 
