@@ -51,8 +51,11 @@ RUN set -ex; \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg-reconfigure locales
-FROM golang 
-RUN go get github.com/tomnomnom/waybackurls
+
+
+RUN wget --no-check-certificate -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.*.tar.gz
+RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /root/.bashrc
 # RUN git clone https://github.com/nahamsec/bbht.git
 # RUN chmod +x bbht/install.sh
 # RUN ./bbht/install.sh
@@ -85,7 +88,6 @@ RUN go get github.com/tomnomnom/waybackurls
 
 # RUN git clone https://github.com/devanshbatham/ParamSpider
 # RUN pip3 install -r ParamSpider/requirements.txt
-FROM ubuntu:18.04
 COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
 RUN chmod +x /app/run.sh
@@ -103,12 +105,18 @@ RUN set -ex; \
 	anydesk
 
 
+RUN wget --no-check-certificate -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.*.tar.gz
+RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /root/.bashrc
+
 ENV UNAME pacat
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --yes pulseaudio-utils
 
-
+RUN wget --no-check-certificate -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.*.tar.gz
+RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /root/.bashrc
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
