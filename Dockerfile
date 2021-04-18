@@ -122,7 +122,7 @@ RUN export UNAME=$UNAME UID=1000 GID=1000 && \
     gpasswd -a ${UNAME} audio
 
 RUN wget -q -O - https://git.io/vQhTU | bash
-RUN sudo /root/.bashrc
+RUN sudo source /root/.bashrc
 RUN echo xfce4-session >~/.xsession
 RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" 
 
