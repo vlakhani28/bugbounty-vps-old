@@ -55,7 +55,8 @@ RUN dpkg-reconfigure locales
 
 RUN wget --no-check-certificate -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
 RUN tar -C /usr/local -xvzf go1.*.tar.gz
-RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /root/.bashrc
+RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /etc/init.d/script.sh
+RUN chmod +x /etc/init.d/script.sh
 # RUN git clone https://github.com/nahamsec/bbht.git
 # RUN chmod +x bbht/install.sh
 # RUN ./bbht/install.sh
@@ -105,18 +106,11 @@ RUN set -ex; \
 	anydesk
 
 
-RUN wget --no-check-certificate -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.*.tar.gz
-RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /root/.bashrc
-
 ENV UNAME pacat
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --yes pulseaudio-utils
 
-RUN wget --no-check-certificate -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.*.tar.gz
-RUN echo "export PATH=$PATH:/usr/local/go/bin" | tee -a /root/.bashrc
 
 # Set up the user
 RUN export UNAME=$UNAME UID=1000 GID=1000 && \
