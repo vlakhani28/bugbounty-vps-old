@@ -53,38 +53,38 @@ RUN set -ex; \
     && rm -rf /var/lib/apt/lists/*
 RUN dpkg-reconfigure locales
 
-# RUN git clone https://github.com/nahamsec/bbht.git
-# RUN chmod +x bbht/install.sh
-# RUN ./bbht/install.sh
+RUN git clone https://github.com/nahamsec/bbht.git
+RUN chmod +x bbht/install.sh
+RUN ./bbht/install.sh
 
-# RUN wget --no-check-certificate -c https://github.com/projectdiscovery/nuclei/releases/download/v2.3.4/nuclei_2.3.4_linux_amd64.tar.gz
-# RUN tar -xzvf nuclei_*.tar.gz
-# RUN mv nuclei /usr/local/bin/nuclei
-# RUN rm nuclei_2.3.4_linux_amd64.tar.gz
+RUN wget --no-check-certificate -c https://github.com/projectdiscovery/nuclei/releases/download/v2.3.4/nuclei_2.3.4_linux_amd64.tar.gz
+RUN tar -xzvf nuclei_*.tar.gz
+RUN mv nuclei /usr/local/bin/nuclei
+RUN rm nuclei_2.3.4_linux_amd64.tar.gz
 
-# RUN wget --no-check-certificate -c https://github.com/projectdiscovery/httpx/releases/download/v1.0.5/httpx_1.0.5_linux_amd64.tar.gz
-# RUN tar -xvf httpx_*.tar.gz
-# RUN mv httpx /usr/local/bin/httpx
-# RUN rm httpx_1.0.5_linux_amd64.tar.gz
-# RUN rm README.md
-# RUN pip3 install waybackpy
-# RUN git clone https://github.com/projectdiscovery/nuclei-templates.git
+RUN wget --no-check-certificate -c https://github.com/projectdiscovery/httpx/releases/download/v1.0.5/httpx_1.0.5_linux_amd64.tar.gz
+RUN tar -xvf httpx_*.tar.gz
+RUN mv httpx /usr/local/bin/httpx
+RUN rm httpx_1.0.5_linux_amd64.tar.gz
+RUN rm README.md
+RUN pip3 install waybackpy
+RUN git clone https://github.com/projectdiscovery/nuclei-templates.git
 
-# RUN wget --no-check-certificate -c https://github.com/Findomain/Findomain/releases/download/4.0.1/findomain-linux
-# RUN chmod +x findomain-linux
+RUN wget --no-check-certificate -c https://github.com/Findomain/Findomain/releases/download/4.0.1/findomain-linux
+RUN chmod +x findomain-linux
 
-# RUN wget --no-check-certificate -c https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
-# RUN unzip aquatone_*.zip
-# RUN rm aquatone_*.zip
-# RUN rm README.md
+RUN wget --no-check-certificate -c https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
+RUN unzip aquatone_*.zip
+RUN rm aquatone_*.zip
+RUN rm README.md
 
-# RUN wget --no-check-certificate -c https://github.com/ffuf/ffuf/releases/download/v1.2.1/ffuf_1.2.1_linux_amd64.tar.gz
-# RUN tar -xzvf ffuf_*.tar.gz
-# RUN rm ffuf_*.tar.gz
+RUN wget --no-check-certificate -c https://github.com/ffuf/ffuf/releases/download/v1.2.1/ffuf_1.2.1_linux_amd64.tar.gz
+RUN tar -xzvf ffuf_*.tar.gz
+RUN rm ffuf_*.tar.gz
 
 
-# RUN git clone https://github.com/devanshbatham/ParamSpider
-# RUN pip3 install -r ParamSpider/requirements.txt
+RUN git clone https://github.com/devanshbatham/ParamSpider
+RUN pip3 install -r ParamSpider/requirements.txt
 
 COPY . /app
 RUN chmod +x /app/conf.d/websockify.sh
@@ -121,8 +121,6 @@ RUN export UNAME=$UNAME UID=1000 GID=1000 && \
     chown ${UID}:${GID} -R /home/${UNAME} && \
     gpasswd -a ${UNAME} audio
 
-RUN wget -q -O - https://git.io/vQhTU | bash
-RUN sudo source /root/.bashrc
 RUN echo xfce4-session >~/.xsession
 RUN echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" 
 
